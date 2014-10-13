@@ -1,0 +1,104 @@
+{clipdef="css"}
+<link href="/static/css/result.css" rel="stylesheet">
+<link href="/static/css/vip-card.css" rel="stylesheet">
+{/clipdef}
+<div class="result-wrap">
+  {if="$trophies"}
+  <div class="gear-wrap"> 
+      <img src="/static/img/gear-top.png">
+          <div class="gear-inner-wrap">
+              <p class="reward-title">恭喜您获得以下奖品：</p>
+          </div>
+      <img src="/static/img/gear-bottom.png">
+  </div>
+  <ul class="reward-list">
+    {loop="$trophies"}
+    <li>
+      <div class="gear-wrap"> 
+        <img src="/static/img/result-gear-top.png">
+          <div class="result-gear-inner-wrap">
+              <h4>
+                {if="$value.category == 'vip'"}
+                欧朋激情派对门票一张
+                {else}
+                {if="$value.voucher_type == 'vipshop'"}
+                20元唯品会代金券一张
+                {elseif="$value.voucher_type == 'lottery'"}
+                3元彩票代金券一张
+                {/if}
+                {/if}
+              </h4>
+              <div class="reward-card">
+                {if="$value.category == 'vip'"}
+                <div class="vip-wrap">
+                  <img src="/static/img/vip-bg-top.jpg">
+                  <div class="vip-inner-wrap">
+                    <p class="title">欧朋激情派对</p>
+                    <div class="table">
+                            <div class="table-cell left-part">                            
+                              <p>
+                                {$value.city}<br>
+                                {$value.addr}<br>
+                                {$value.time|format_date:"Y-m-d"}<br>
+                                {$value.time|format_date:"H:i"}
+                              </p>
+                            </div>
+                            <div class="table-cell right-part">
+                              <img src="/static/img/girl-head-1.jpg" />                
+                            </div>
+                        </div>                     
+                  </div>                 
+                  <img src="/static/img/vip-bg-bottom.jpg">
+                </div>
+                {else}
+                {if="$value.voucher_type == 'vipshop'"}
+                <div class="voucher-wrap">
+                  <img src="/static/img/voucher-card.png" alt="20元唯品会代金券">
+                  <div class="voucher-use"><a href="http://ap.vip.com/index.php?m=activity&amp;code=op_sjb_choujiang" target="_blank">立即使用</a></div>             
+                </div>
+                <p class="card-no">NO.{$value.sn}</p>
+                {elseif="$value.voucher_type == 'lottery'"}
+                <div class="voucher-wrap">
+                  <img src="/static/img/lottery-card.png" alt="3元彩票代金券">
+                  <div class="voucher-use"><a class="lottery-use" href="/lottery" target="_blank">立即使用</a></div>             
+                </div>
+                <p class="card-no">优惠券码：{$value.sn}</p>
+                {/if}
+                {/if}
+              </div>
+          </div>
+        <img src="/static/img/result-gear-bottom.png">
+      </div>
+    </li>
+    {/loop}
+  </ul>
+  <a class="btn btn-green back-to-index-btn" href="/index">返回活动专题</a>
+  {else}{noparse}
+    <div class="no-reward">
+        <div class="gear-wrap">
+            <img src="/static/img/gear-top.png">
+            <div class="gear-inner-wrap">
+                <p class="no-reward-tips">您还没获得任何奖励呢！</p>
+                <a class="btn btn-green mb1" href="/index">
+                    返回活动专题
+                </a>
+            </div>
+            <img src="/static/img/gear-bottom.png">
+        </div>
+    </div>
+{/noparse}{ignore}
+    <div class="no-reward">
+        <div class="gear-wrap">
+            <img src="/static/img/gear-top.png">
+            <div class="gear-inner-wrap">
+                <p class="no-reward-tips">您还没获得任何奖励呢！</p>
+                <a class="btn btn-green mb1" href="/index">
+                    返回活动专题
+                </a>
+            </div>
+            <img src="/static/img/gear-bottom.png">
+        </div>
+    </div>
+{/ignore}
+  {/if}
+</div>
