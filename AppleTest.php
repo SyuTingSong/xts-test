@@ -192,4 +192,10 @@ PHPCODE;
         //restore the configuration
         \xts\Apple::conf(X::$conf['component']['apple']['conf']);
     }
+
+    public function testActionPrefix() {
+        $_SERVER['REQUEST_URI'] = '/prefix';
+        X::apple()->run();
+        $this->expectOutputString('action_prefix');
+    }
 }
