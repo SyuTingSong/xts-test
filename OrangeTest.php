@@ -181,4 +181,47 @@ class OrangeTest extends PHPUnit_Framework_TestCase {
     public function testLoadEmpty() {
         $this->assertNull(X::orange('user')->load(1));
     }
+
+    public function testPKWithoutAI() {
+        X::orange('comment')->remove(1);
+        $comment = X::orange('comment');
+        $comment->id = 1;
+        $comment->user_id=29;
+        $text = uniqid();
+        $comment->text = $text;
+        $comment->save();
+
+        $cmt = X::orange('comment')->load(1);
+        $this->assertEquals($text, $cmt->text);
+    }
+
+    /**
+     * @depends testPKWithoutAI
+     */
+    public function testChangePK() {
+        X::orange('comment')->remove(3);
+        $comment = X::orange('comment')->load(1);
+        $comment->id = 3;
+        $text = uniqid();
+        $comment->text = $text;
+        $comment->save();
+
+        $cmt = X::orange('comment')->load(3);
+        $this->assertEquals($text, $cmt->text);
+    }
+
+    /**
+     * @depends testChangePK
+     */
+    public function testChangePKinCache() {
+        X::orange('comment')->cache()->remove(5);
+        $comment = X::orange('comment')->cache(2)->load(3);
+        $comment->id = 5;
+        $text = uniqid();
+        $comment->text = $text;
+        $comment->cache(2)->save();
+
+        $cmt = X::orange('comment')->cache(2)->load(3);
+        $this->assertNull($cmt);
+    }
 }
