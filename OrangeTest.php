@@ -224,4 +224,10 @@ class OrangeTest extends PHPUnit_Framework_TestCase {
         $cmt = X::orange('comment')->cache(2)->load(3);
         $this->assertNull($cmt);
     }
+
+    public function testCamelCaseProperty() {
+        $comment = X::orange('comment');
+        $comment->user_id = 5;
+        $this->assertEquals(5, $comment->userId);
+    }
 }
