@@ -33,8 +33,8 @@ return array(
             'class' => '\\xts\\Query',
             'singleton' => true,
             'conf' => array(
-                'host' => 'mysql-m1.nhorizon.in',
-                'port' => 3310,
+                'host' => 'localhost',
+                'port' => 3306,
                 'schema' => 'xts',
                 'charset' => 'utf8',
                 'user' => 'xts',
